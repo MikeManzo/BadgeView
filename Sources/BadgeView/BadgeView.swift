@@ -28,12 +28,12 @@ public class BadgeView: NSView, CustomTaggable {
     //
     
     // No upper limit.
-    func incrementCounter() {
+    public func incrementCounter() {
         count += 1
     }
         
     // Badges must always be positive or zero (at which point badge should be hidden)
-    func decrementCounter() {
+    public func decrementCounter() {
         if count >= 1 {
             count -= 1
         }
