@@ -19,9 +19,9 @@ protocol CustomTaggable {
 }
 
 @IBDesignable
-class BadgeView: NSView, CustomTaggable {
+public class BadgeView: NSView, CustomTaggable {
     // Make sure it works with vibrant views.
-    override var allowsVibrancy: Bool { return true }
+    public override var allowsVibrancy: Bool { return true }
     
     //
     // MARK: - Public API
@@ -185,7 +185,7 @@ class BadgeView: NSView, CustomTaggable {
         label.textColor = fontColor
     }
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         #if !TARGET_INTERFACE_BUILDER
         //
         // Note:
@@ -275,7 +275,7 @@ class BadgeView: NSView, CustomTaggable {
     // MARK: - Drawing
     //
     
-    override var intrinsicContentSize:NSSize {
+    public override var intrinsicContentSize:NSSize {
         // Base the intrinsic width of the badge of the width of the count string
         
         let stringToUseForLabelWidthCalculation = customCountStringToUseToCalculateIntrinsicContentSize ?? "\(count)"
@@ -289,7 +289,7 @@ class BadgeView: NSView, CustomTaggable {
     }
     
     
-    override func draw(_ dirtyRect: NSRect) {
+    public override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
         // Fill the background with the background colour.
@@ -467,7 +467,7 @@ class BadgeView: NSView, CustomTaggable {
     // MARK: Interface builder design view.
     //
     
-    override func prepareForInterfaceBuilder() {
+    public override func prepareForInterfaceBuilder() {
         loadNib()
     }
 }
