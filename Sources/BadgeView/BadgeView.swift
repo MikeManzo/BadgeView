@@ -19,7 +19,7 @@ protocol CustomTaggable {
 }
 
 @IBDesignable
-public class BadgeView: NSView, CustomTaggable {
+open class BadgeView: NSView, CustomTaggable {
     // Make sure it works with vibrant views.
     public override var allowsVibrancy: Bool { return true }
     
@@ -46,9 +46,9 @@ public class BadgeView: NSView, CustomTaggable {
     var lastCount:Int = 1
     var customCountStringToUseToCalculateIntrinsicContentSize:String? = nil
     
-    @IBInspectable var customTag:Int = -1
+    @IBInspectable open var customTag:Int = -1
     
-    @IBInspectable var count:Int = 1 {
+    @IBInspectable open var count:Int = 1 {
         didSet {
             // If the count was set to zero, show the last non-zero count so we can
             // animate the badge out on that value instead.
@@ -71,31 +71,31 @@ public class BadgeView: NSView, CustomTaggable {
     }
     
     
-    @IBInspectable var fontColor:NSColor! {
+    @IBInspectable open var fontColor:NSColor! {
         didSet {
             updateFont()
         }
     }
     
-    @IBInspectable var backgroundColor:NSColor! {
+    @IBInspectable open var backgroundColor:NSColor! {
         didSet {
             needsDisplay = true
         }
     }
     
-    @IBInspectable var fontsizeBelowWhichLabelDisplaysInBoldface:CGFloat = 16.0 {
+    @IBInspectable open var fontsizeBelowWhichLabelDisplaysInBoldface:CGFloat = 16.0 {
         didSet {
             updateFont()
         }
     }
     
-    @IBInspectable var fontSizeRelativeToBadge:CGFloat = 0.60 {
+    @IBInspectable open var fontSizeRelativeToBadge:CGFloat = 0.60 {
         didSet {
             updateFont()
         }
     }
     
-    @IBInspectable var horizontalPadding:CGFloat = 0.0 {
+    @IBInspectable open var horizontalPadding:CGFloat = 0.0 {
         didSet {
             needsDisplay = true
         }
@@ -128,7 +128,7 @@ public class BadgeView: NSView, CustomTaggable {
         commonInit()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
