@@ -23,6 +23,16 @@ open class BadgeView: NSView, CustomTaggable {
     // Make sure it works with vibrant views.
     public override var allowsVibrancy: Bool { return true }
     
+    var _nibName: String?
+    @IBInspectable
+    var XibName: String = "__CHANGE ME__" {
+        willSet {
+            needsDisplay = true
+            _nibName = newValue
+            commonInit()
+        }
+    }
+    
     //
     // MARK: - Public API
     //
@@ -256,7 +266,7 @@ open class BadgeView: NSView, CustomTaggable {
     //
     // MARK: - Nib
     //
-    func loadNib() {
+/*    func loadNib() {
         //
         // Load the nib for the component then find and add the view from it.
         //
@@ -273,7 +283,19 @@ open class BadgeView: NSView, CustomTaggable {
 
         addSubview(customView)
     }
+*/
+    func loadNib() {
+        var topLevelObjects: NSArray?
+        let myBundle = Bundle(for: type(of: self))
 
+        if myBundle.loadNibNamed(_nibName!, owner: self, topLevelObjects: &topLevelObjects) {
+            customView = topLevelObjects?.first(where: { $0 is NSView }) as? NSView
+            addSubview(customView)
+        } else {
+            print("Error trying to load the Xib: \(_nibName!)")
+        }
+    }
+    
     //
     // MARK: - Drawing
     //
