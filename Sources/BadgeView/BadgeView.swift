@@ -260,7 +260,10 @@ public class BadgeView: NSView, CustomTaggable {
         //
         // Load the nib for the component then find and add the view from it.
         //
-        Bundle(for: type(of: self)).loadNibNamed("BadgeView", owner: self, topLevelObjects: &customViewTopLevelObjects)
+        if (!Bundle(for: type(of: self)).loadNibNamed("BadgeView", owner: self, topLevelObjects: &customViewTopLevelObjects)) {
+            print("BadgeView[loadNib]: Error Loading BadeView from NIB")
+            return
+        }
         
         let indexOfCustomView = customViewTopLevelObjects!.indexOfObject( passingTest: { (object:Any, index:Int, stop:UnsafeMutablePointer<ObjCBool>) -> Bool in
             return (object as AnyObject).isKind(of: NSView.self)
