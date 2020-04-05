@@ -117,7 +117,7 @@ public class BadgeView: NSView, CustomTaggable {
     
     var constraintGroup:ConstraintGroup?
     
-    @IBOutlet var parentView:NSView?
+    /*@IBOutlet*/ var parentView:NSView?
     
     //
     // MARK: - Initialisation
